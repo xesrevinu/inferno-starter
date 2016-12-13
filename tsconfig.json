@@ -4,11 +4,9 @@
 		"target": "es5",
 		"module": "commonjs",
 		"noImplicitAny": true,
-    "noUnusedLocals": true,
     "noUnusedParameters": true,
 		"removeComments": true,
-		"experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+		"experimentalDecorators": true
 	},
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,

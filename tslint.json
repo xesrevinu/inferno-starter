@@ -5,9 +5,15 @@
     "member-access": [false],
     "semicolon": [true, "never"],
     "trailing-comma": [false],
-    "one-variable-per-declaration": [false]
+    "one-variable-per-declaration": [false],
+    "quotemark": [true, "single"],
+    "object-literal-sort-keys": false
   },
   "jsRules": {
+    "quotemark": [true, "single"],
+    "object-literal-sort-keys": false,
+    "trailing-comma": [false],
+    "semicolon": [true, "never"]
   },
   "rulesDirectory": [
   ]
