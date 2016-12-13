@@ -1,0 +1,14 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "interface-name": [false],
+    "member-access": [false],
+    "semicolon": [true, "never"],
+    "trailing-comma": [false],
+    "one-variable-per-declaration": [false]
+  },
+  "jsRules": {
+  },
+  "rulesDirectory": [
+  ]
+}
