@@ -1,3 +1,4 @@
 .vscode
+.awcache/
 dist
 node_modules

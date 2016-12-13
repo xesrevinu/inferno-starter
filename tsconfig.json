@@ -7,8 +7,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 		"removeComments": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
 	},
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "useCache": true,
+    "forkChecker": true,
+    "forkCheckerSilent": true
+  },
   "exclude": [
     "node_modules"
   ]

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   bail: true,
@@ -21,7 +22,7 @@ module.exports = {
       // bundle the client for hot reloading
       // only- means to only hot reload for successful updates
 
-      './index.ts'
+      './index'
     ]
   },
   output: {
@@ -30,7 +31,7 @@ module.exports = {
     publicPath: ''
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json'],
+    extensions: ['.js', '.ts', '.tsx', '.json'],
     modules: [
       "node_modules",
       resolve(__dirname, "../src")
@@ -40,9 +41,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        exclude: /(node_modules)/,
-        loader: 'ts-loader'
+        test: /\.(ts|tsx)$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /(node_modules)/
       },
       { test: /\.js$/,
         loaders: [
@@ -61,6 +62,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CheckerPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
@@ -90,6 +92,7 @@ module.exports = {
   devServer: {
     hot: true,
     // activate hot reloading
+    inline: true,
 
     contentBase: resolve(__dirname, '../dist'),
     // match the output path
