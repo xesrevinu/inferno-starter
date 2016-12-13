@@ -12,6 +12,11 @@ module.exports = {
   context: resolve(__dirname, '../src'),
   devtool: 'cheap-module-source-map',
   target: 'web',
+  performance: {
+    maxAssetSize: 250,
+    maxInitialChunkSize: 300,
+    hints: isProd
+  },
   entry: {
     app: [
       'react-hot-loader/patch',
