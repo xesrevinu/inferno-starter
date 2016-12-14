@@ -1,13 +1,16 @@
 {
 	"compilerOptions": {
-		"jsx": "react",
+		"jsx": "preserve",
 		"target": "es5",
-		"module": "commonjs",
-		"noImplicitAny": true,
+		"module": "es2015",
+		// "noImplicitAny": true,
     "noUnusedParameters": true,
 		"removeComments": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+    "moduleResolution": "node",
+    "sourceMap": true
 	},
+  "transpileOnly": true,
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
     "useCache": true,

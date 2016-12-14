@@ -20,7 +20,6 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
       './index'
     ]
   },
@@ -30,15 +29,15 @@ module.exports = {
     publicPath: ''
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     modules: [
       'node_modules',
       resolve(__dirname, '../src')
     ],
     alias: {
-      'react': 'inferno-compat',
-      'react-dom': 'inferno-compat',
-      'react-router': 'inferno-router'
+      // 'react': 'inferno-compat',
+      // 'react-dom': 'inferno-compat',
+      // 'react-router': 'inferno-router'
     }
   },
   module: {
