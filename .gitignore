@@ -1,4 +1,6 @@
 .vscode
 .awcache/
+yarn.lock
 dist
 node_modules
+npm-debug.log

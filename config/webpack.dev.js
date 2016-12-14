@@ -35,13 +35,20 @@ module.exports = {
       'node_modules',
       resolve(__dirname, '../src')
     ],
-    alias: {}
+    alias: {
+      'react': 'inferno-compat',
+      'react-dom': 'inferno-compat',
+      'react-router': 'inferno-router'
+    }
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: 'awesome-typescript-loader',
+        use: [
+          'react-hot-loader/webpack',
+          'awesome-typescript-loader'
+        ],
         exclude: /(node_modules)/
       },
       {
@@ -119,7 +126,6 @@ module.exports = {
   ],
   devServer: {
     hot: true,
-    inline: true,
     contentBase: resolve(__dirname, '../dist'),
     publicPath: '/',
     historyApiFallback: true,
