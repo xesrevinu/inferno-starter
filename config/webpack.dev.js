@@ -29,7 +29,7 @@ module.exports = {
     publicPath: ''
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.web.js', '.ts', '.tsx', '.js', '.json'],
     modules: [
       'node_modules',
       resolve(__dirname, '../src')
@@ -51,11 +51,10 @@ module.exports = {
         exclude: /(node_modules)/
       },
       {
+        // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
         test: /\.js$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /node_modules/
+        enforce: 'pre',
+        loader: 'source-map-loader'
       },
       {
         test: /\.css$/,
