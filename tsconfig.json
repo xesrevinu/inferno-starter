@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"jsx": "preserve",
-		"target": "es5",
+		"target": "es6",
 		"module": "es2015",
 		// "noImplicitAny": true,
     "noUnusedParameters": true,
@@ -10,18 +10,19 @@
     "moduleResolution": "node",
     "sourceMap": true
 	},
-  "transpileOnly": true,
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
-    "useCache": true,
+    "useWebpackText": true,
     "forkChecker": true,
-    "forkCheckerSilent": true
+    "useCache": true,
+    "emitRequireType": false
   },
   "include": [
     "./declarations.d.ts",
     "./src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
