@@ -180,9 +180,8 @@ module.exports = {
       workDir
     ],
     alias: {
-      // 'react': 'inferno-compat',
-      // 'react-dom': 'inferno-compat',
-      // 'react-router': 'inferno-router'
+      'react': 'inferno-compat',
+      'react-dom': 'inferno-compat'
     }
   },
   module: {
