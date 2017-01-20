@@ -1,16 +1,17 @@
 import * as React from 'react'
 import Hello from './components/Hello'
-// import * as Mobile from 'antd-mobile'
+import { Button } from 'antd-mobile'
 
-interface AppProps {
+export interface AppProps {
 
 }
 
 class App extends React.Component<AppProps, undefined> {
-  render () {
+  render() {
     return (
       <div>
         <Hello name='xiaokekeT' />
+        <Button onClick={(e) => console.log(e)}>1</Button>
       </div>
     )
   }

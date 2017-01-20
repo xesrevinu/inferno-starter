@@ -1,22 +1,14 @@
 {
 	"compilerOptions": {
+    "sourceMap": true,
 		"jsx": "preserve",
 		"target": "es6",
-		"module": "es2015",
-		// "noImplicitAny": true,
-    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
 		"removeComments": true,
 		"experimentalDecorators": true,
-    "moduleResolution": "node",
-    "sourceMap": true
+    "moduleResolution": "node"
 	},
-  "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "useWebpackText": true,
-    "forkChecker": true,
-    "useCache": true,
-    "emitRequireType": false
-  },
   "include": [
     "./declarations.d.ts",
     "./src/**/*"

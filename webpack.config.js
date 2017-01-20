@@ -26,7 +26,7 @@ const entryFile = isProd ? {
 let loaders = {
   ts: {
     test: /\.(tsx?)$/,
-    use: 'awesome-typescript-loader',
+    use: ['babel-loader', 'ts-loader'],
     exclude: /(node_modules)/
   },
   js: {
@@ -42,9 +42,8 @@ let loaders = {
       {
         loader: 'css-loader',
         options: {
-          modules: true,
-          importLoaders: 1,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
+          modules: false,
+          importLoaders: 1
         }
       },
       'postcss-loader'
@@ -165,11 +164,9 @@ module.exports = {
   cache: isProd,
   devtool: isProd ? 'source-map' : 'cheap-module-source-map',
   target: 'web',
-  // performance: {
-  //   maxAssetSize: 250,
-  //   maxInitialChunkSize: 300,
-  //   hints: isProd
-  // },
+  performance: {
+    hints: false
+  },
   entry: entryFile,
   output: {
     path: join(workDir, './dist'),
@@ -177,7 +174,7 @@ module.exports = {
     filename: isProd ? 'js/[name].[hash].js' : 'js/bundle.js'
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.json'],
+    extensions: ['.web.js', '.tsx', '.ts', '.js'],
     modules: [
       'node_modules',
       workDir
