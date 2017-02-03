@@ -14,7 +14,7 @@ yarn
 
 ``` bash
 
-npm start
+yarn start
 
 ```
 
@@ -22,7 +22,7 @@ npm start
 
 ``` bash
 
-npm run build
+yarn run build
 
 ```
 
@@ -34,8 +34,7 @@ alias react -> inferno
 
 resolve.alias = {
   'react': 'inferno-compat',
-  'react-dom': 'inferno-compat',
-  'react-router': 'inferno-router'
+  'react-dom': 'inferno-compat'
 }
 ```
 

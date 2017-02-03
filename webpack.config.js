@@ -3,7 +3,6 @@ const { resolve, join } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
 const cssnext = require('postcss-cssnext')
 const pxtorem = require('postcss-pxtorem')
 
@@ -15,13 +14,25 @@ const cleanDir = ['dist']
 const publicPath = isProd
   ? '/assets' // assets path or cdn
   : '/'
+const vendor = [
+  'core-js/es6',
+  'inferno-compat',
+  'inferno-router',
+  'inferno-mobx',
+  'react-tap-event-plugin',
+  'history'
+]
 
 const entryFile = isProd ? {
-  app: './src/index'
-} : [
-  'react-hot-loader/patch',
-  './src/index'
-]
+  app: './src/index',
+  vendor: vendor
+} : {
+  app: [
+    // 'react-hot-loader/patch',
+    './src/index'
+  ],
+  vendor: vendor
+}
 
 let loaders = {
   ts: {
@@ -63,6 +74,18 @@ let loaders = {
       },
       'postcss-loader',
       'sass-loader'
+    ]
+  },
+  svg: {
+    test: /\.svg$/,
+    loaders: [{
+      loader: 'react-svg-loader',
+      query: {
+        svgo: {
+          plugins: [{removeTitle: false}],
+          floatPrecision: 2
+        }
+      }}
     ]
   }
 }
@@ -114,7 +137,6 @@ const basePlugins = [
     },
     '__DEV__': !isProd
   }),
-  new CheckerPlugin(),
   new webpack.NamedModulesPlugin(),
   new webpack.LoaderOptionsPlugin({
     options: {
@@ -122,6 +144,10 @@ const basePlugins = [
       postcss: postcssPlugins
     },
     minimize: isProd
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    names: ['vendor'],
+    minChunks: Infinity
   }),
   new HtmlWebpackPlugin({
     title: 'Hello',
@@ -162,7 +188,7 @@ const plugins = basePlugins
 
 module.exports = {
   cache: isProd,
-  devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
   target: 'web',
   performance: {
     hints: false
@@ -171,7 +197,7 @@ module.exports = {
   output: {
     path: join(workDir, './dist'),
     publicPath: publicPath,
-    filename: isProd ? 'js/[name].[hash].js' : 'js/bundle.js'
+    filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js'
   },
   resolve: {
     extensions: ['.web.js', '.tsx', '.ts', '.js'],
@@ -189,7 +215,16 @@ module.exports = {
       loaders.js,
       loaders.ts,
       loaders.css,
-      loaders.scss
+      loaders.scss,
+      loaders.svg,
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        loader: !isProd ? 'file-loader' : 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.(png|jpg|jpeg)$/,
+        loader: !isProd ? 'file-loader?limit=1024' : 'file-loader?limit=1024&name=images/[hash:6].[ext]'
+      }
     ]
   },
   plugins: plugins,
@@ -197,6 +232,7 @@ module.exports = {
     hot: true,
     inline: true,
     contentBase: join(workDir, './dist'),
+    host: '0.0.0.0',
     publicPath: publicPath,
     historyApiFallback: true,
     quiet: true,
